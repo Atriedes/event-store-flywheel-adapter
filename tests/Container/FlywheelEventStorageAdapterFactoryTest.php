@@ -11,8 +11,8 @@
 
 namespace ProophTest\EventStore\Adapter\Flywheel\Container;
 
-use PHPUnit_Framework_TestCase as TestCase;
 use Interop\Container\ContainerInterface;
+use PHPUnit_Framework_TestCase as TestCase;
 use Prooph\Common\Messaging\MessageConverter;
 use Prooph\Common\Messaging\MessageFactory;
 use Prooph\EventStore\Adapter\Flywheel\Container\FlywheelEventStoreAdapterFactory;

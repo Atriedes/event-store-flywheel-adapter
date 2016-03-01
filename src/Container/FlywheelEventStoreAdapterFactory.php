@@ -68,7 +68,7 @@ final class FlywheelEventStoreAdapterFactory implements RequiresConfig, Requires
             $dir = $config['dir'];
         }
 
-        if (! is_dir($dir)) {
+        if (!is_dir($dir)) {
             throw ConfigurationException::configurationError(sprintf(
                 '%s was not able to locate %s',
                 __CLASS__,
