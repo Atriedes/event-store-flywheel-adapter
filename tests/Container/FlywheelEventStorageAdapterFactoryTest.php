@@ -95,7 +95,7 @@ class FlywheelEventStorageAdapterFactoryTest extends TestCase
     {
         $container = $this->prophesize(ContainerInterface::class);
 
-        $config['prooph']['event_store']['adapter'] = [];
+        $config['prooph']['event_store']['adapter']['options'] = [];
 
         $container->has('config')->willReturn(true);
         $container->get('config')->willReturn($config);
