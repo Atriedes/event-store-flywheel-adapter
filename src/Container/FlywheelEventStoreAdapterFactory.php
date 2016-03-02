@@ -47,7 +47,7 @@ final class FlywheelEventStoreAdapterFactory implements RequiresConfig, Requires
      */
     public function mandatoryOptions()
     {
-        return ['adapter' => ['options']];
+        return ['adapter' => ['options' => ['dir']]];
     }
 
     /**
@@ -62,17 +62,11 @@ final class FlywheelEventStoreAdapterFactory implements RequiresConfig, Requires
         $config = $container->get('config');
         $config = $this->options($config)['adapter']['options'];
 
-        $dir = null;
-
-        if (isset($config['dir'])) {
-            $dir = $config['dir'];
-        }
-
-        if (!is_dir($dir)) {
+        if (!is_dir($config['dir'])) {
             throw ConfigurationException::configurationError(sprintf(
                 '%s was not able to locate %s',
                 __CLASS__,
-                $dir
+                $config['dir']
             ));
         }
 
@@ -84,6 +78,6 @@ final class FlywheelEventStoreAdapterFactory implements RequiresConfig, Requires
             ? $container->get(MessageConverter::class)
             : new NoOpMessageConverter();
 
-        return new FlywheelEventStoreAdapter($dir, $messageFactory, $messageConverter);
+        return new FlywheelEventStoreAdapter($config['dir'], $messageFactory, $messageConverter);
     }
 }
